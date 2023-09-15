@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.c99edee9.css","mappings":"AAEA,WAEI,gBAAiB,CADjB,eAEJ,CACA,YAEI,gBAAiB,CADjB,eAEJ","sources":["components/filmsList/FilmsList.css"],"sourcesContent":["\r\n\r\n.film-item{\r\n    max-width: 451px;\r\n    max-height: 279px;\r\n}\r\n.poster img{\r\n    max-width: 183px;\r\n    max-height: 279px;\r\n}"],"names":[],"sourceRoot":""}
