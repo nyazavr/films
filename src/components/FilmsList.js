@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pagination, Space } from 'antd';
+import { Pagination, Space, Empty, Alert } from 'antd';
 
 import FilmItem from './FilmItem';
 
@@ -9,20 +9,24 @@ export default class FilmsList extends React.Component {
   }
 
   createItems = (listMovie) => {
-    return listMovie.map((e) => {
-      console.log(e);
-      return <FilmItem key={e.id} param={e} />;
-    });
+    if (listMovie.length != 0) {
+      return listMovie.slice(0).map((e) => {
+        return <FilmItem key={e.id} param={e} rateListMovie={this.props.rateListMovie} />;
+      });
+    } else {
+      return <Empty className="empty" description="No movies found or search input empty" />;
+    }
   };
 
   render() {
     try {
-      console.log(this.props.totalPages);
       const filmsItems = this.createItems(this.props.listMovie);
       return (
         <div className="filmsapp__films films">
-          <Space className="films__items" direction="vertical" align="center" wrap="true" size={'middle'}>
-            {filmsItems}
+          <Space className="films__items-wrapper" direction="vertical" align="center" wrap="true" size={'middle'}>
+            <Space className="films__items" direction="horizontal" wrap="true" size={'middle'}>
+              {filmsItems}
+            </Space>
           </Space>
           <Pagination
             onChange={(e) => this.props.onChangePagination(e)}
@@ -34,7 +38,7 @@ export default class FilmsList extends React.Component {
       );
     } catch (err) {
       console.log(err);
-      return <div> Loading</div>;
+      return <Alert message={`Error fetching movie data: ${err}`} type="error" showIcon />;
     }
   }
 }

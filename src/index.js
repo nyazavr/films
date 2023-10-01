@@ -5,11 +5,7 @@ import App from './components/App';
 import './css/main-css.css';
 
 export const AppConnector = () => {
-  return (
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  );
+  return <App />;
 };
 
 const root = createRoot(document.getElementById('root')); // createRoot(container!) if you use TypeScript
